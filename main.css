@@ -1,0 +1,25 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+p {
+	text-align: center;
+	font-family: Helvetica, Arial, sans-serif;
+	color: #fff;
+}
+
+.game {
+	margin: auto;
+	width: 600px;
+}
+
+body {
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	background: #222;
+}
+
