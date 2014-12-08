@@ -91,7 +91,7 @@ class LaserState extends GameState
 		player.x = 550;
 		player.y = 550;
 		player.changeMode(Player.MODE_PLATFORMING);
-		player.jumpSpeed = -350;
+		player.jumpSpeed = -390;
 		player.xSpeed = 0;
 		player.ySpeed = 0;
 	}

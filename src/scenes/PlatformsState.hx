@@ -16,12 +16,12 @@ class PlatformsState extends GameState
 
 	private static inline var HEIGHT_CHANGE:Int = 45;
 	private static inline var HEIGHT_VAR:Int = 10;
-	private static inline var SIDE_CHANGE:Int = 80;
+	private static inline var SIDE_CHANGE:Int = 140;
 	private static inline var SIDE_VAR:Int = 40;
 
 	override public function init()
 	{
-		platforms = cast(Math.min(Math.floor(Main.gameScene.availableBlocks * Math.random()) + 1, 9), Int);
+		platforms = cast(Math.floor(HXP.lerp(1, 9, Main.gameScene.availableBlocks / Main.gameScene.blocks.length) * Math.random()) + 1, Int);
 
 		var blocks = Main.gameScene.assignBlocks(platforms, Block.MODE_WALL);
 
@@ -42,7 +42,7 @@ class PlatformsState extends GameState
 		newTops();
 
 		goal.x = topX;
-		goal.y = topY - 10;
+		goal.y = topY - 25;
 	}
 
 	private function newTops()
@@ -56,13 +56,13 @@ class PlatformsState extends GameState
 		player.x = 50;
 		player.y = 550;
 		player.changeMode(Player.MODE_PLATFORMING);
-		player.jumpSpeed = -270;
+		player.jumpSpeed = -300;
 		player.xSpeed = 0;
 		player.ySpeed = 0;
 	}
 
 	override public function time(scene:GameScene)
 	{
-		return platforms * 1.3 + 2;
+		return platforms * 1.2 + 3;
 	}
 }

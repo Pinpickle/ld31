@@ -12,6 +12,7 @@ class Player extends PhysicsEntity
 	public var mode:Int;
 	public var jumpSpeed:Int = -270;
 	public var platformAcc:Float = 1000;
+	public var platformDeacc:Float = 3000;
 	public var platformAirFactor:Float = 0.8;
 	public var platformMaxSpeed:Float = 250;
 
@@ -122,9 +123,9 @@ class Player extends PhysicsEntity
 
 		if ((!(Input.check("left"))) && (!(Input.check("right"))))
 		{
-			if (Math.abs(xSpeed) > HXP.elapsed * platformAcc * factor)
+			if (Math.abs(xSpeed) > HXP.elapsed * platformDeacc * factor)
 			{
-				xSpeed -= Utils.sgn(xSpeed) * HXP.elapsed * platformAcc * factor;
+				xSpeed -= Utils.sgn(xSpeed) * HXP.elapsed * platformDeacc * factor;
 			}
 			else
 			{
@@ -138,7 +139,7 @@ class Player extends PhysicsEntity
 			jumpSfx.play(0.7);
 		}
 
-		ySpeed += 500 * HXP.elapsed;
+		ySpeed += 600 * HXP.elapsed;
 
 		if (Math.abs(xSpeed) > platformMaxSpeed)
 		{
