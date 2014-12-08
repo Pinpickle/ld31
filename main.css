@@ -12,6 +12,7 @@ p {
 .game {
 	margin: auto;
 	width: 600px;
+	display: block;
 }
 
 body {
