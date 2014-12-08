@@ -240,7 +240,7 @@ class GameScene extends Scene
 			}
 			else
 			{
-				music.play(0.8);
+				music.loop(0.8);
 			}
 		}
 	}
