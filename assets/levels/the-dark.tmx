@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="32" height="18" tilewidth="24" tileheight="24">
+ <tileset firstgid="1" name="Main Tileset" tilewidth="24" tileheight="24">
+  <image source="../graphics/tileset.png" width="240" height="240"/>
+ </tileset>
+ <layer name="tiles-main" width="32" height="18">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo4B6gBcNj4JRMFwBIxAzD6D93AwDm8dG7R+1f6jbDwCZ3gDh
+  </data>
+ </layer>
+ <layer name="tiles-other" width="32" height="18">
+  <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgiD/r25IQAEAfBkJAAAB
+  </data>
+ </layer>
+ <layer name="Tile Layer 3" width="32" height="18">
+  <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgiD/r25IQAEAfBkJAAAB
+  </data>
+ </layer>
+ <objectgroup name="objects" width="32" height="18">
+  <object name="player" gid="24" x="384" y="240"/>
+ </objectgroup>
+</map>
