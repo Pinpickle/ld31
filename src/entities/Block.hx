@@ -101,23 +101,27 @@ class Block extends entities.PhysicsEntity
 			}
 		}
 
-		switch(mode)
+		if (splitState != 3)
 		{
-			case MODE_IDLE:
-				x = circleTween.x;
-				y = circleTween.y;
-			case MODE_SPIKE:
-				rotation += 90 * HXP.elapsed;
-			case MODE_LASER:
-				rotation += 90 * HXP.elapsed;
-				if (delay > 0)
-				{
-					delay -= HXP.elapsed;
-				}
-				else if (x < HXP.width - GameScene.WALL_WIDTH - 20 - 20 * laserInd)
-				{
-					x += speed;
-				}
+			switch(mode)
+			{
+				case MODE_IDLE:
+					x = circleTween.x;
+					y = circleTween.y;
+				case MODE_SPIKE:
+					rotation += 90 * HXP.elapsed;
+				case MODE_LASER:
+					rotation += 90 * HXP.elapsed;
+					if (delay > 0)
+					{
+						delay -= HXP.elapsed;
+					}
+					else if (x < HXP.width - GameScene.WALL_WIDTH - 20 - 20 * laserInd)
+					{
+						x += speed;
+					}
+					
+			}
 		}
 	}
 

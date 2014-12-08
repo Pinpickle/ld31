@@ -19,6 +19,6 @@ class WallFieldState extends GameState
 
 	override public function time(scene:GameScene)
 	{
-		return 2 + HXP.distance(scene.player.x, scene.player.y, scene.goal.x, scene.goal.y) / 150;
+		return 2 + HXP.distance(scene.player.x, scene.player.y, scene.goal.x, scene.goal.y) / 200;
 	}
 }

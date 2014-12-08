@@ -37,12 +37,12 @@ class LaserState extends GameState
 			var splitBlocks:Array<Block> = bigBlock.split(Block.MODE_IDLE);
 			for (block in splitBlocks)
 			{
-				var x = 35 + (cols - col) * SPACING;
+				var x = 20 + (cols - col) * SPACING;
 				block.setMode(Block.MODE_LASER);
 				block.x = x;
 				block.y = blockY;
 				block.speed = 9;
-				block.delay = 1 + col * 1.2;
+				block.delay = 1 + col * 1.45;
 				block.laserInd = col;
 
 				if (ind + 1 == colPoints[col])
@@ -82,8 +82,8 @@ class LaserState extends GameState
 
 	override public function setGoalPosition(goal:Goal)
 	{
-		goal.x = 50;
-		goal.y = 550;
+		goal.x = 40;
+		goal.y = 560;
 	}
 
 	override public function setPlayerPosition(player:Player)
@@ -98,6 +98,6 @@ class LaserState extends GameState
 
 	override public function time(scene:GameScene)
 	{
-		return cols * 1.2 + 2;
+		return cols * 1.45 + 3.5;
 	}
 }
