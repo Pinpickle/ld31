@@ -3,7 +3,6 @@ package entities;
 
 import flash.display.Shape;
 import com.punkiversal.Entity;
-import com.punkiversal.graphics.Image;
 import com.punkiversal.masks.Polygon;
 import com.punkiversal.math.Vector;
 import com.punkiversal.PV;

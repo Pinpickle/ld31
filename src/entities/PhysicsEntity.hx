@@ -4,8 +4,6 @@ package entities;
 
 import com.punkiversal.PV;
 import com.punkiversal.Entity;
-import com.punkiversal.utils.Draw;
-import com.punkiversal.graphics.Image;
 
 class PhysicsEntity extends TransitionEntity
 {

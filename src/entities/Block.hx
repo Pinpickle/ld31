@@ -5,7 +5,6 @@ import flash.display.Shape;
 import com.punkiversal.Entity;
 import com.punkiversal.PV;
 import scenes.GameScene;
-import com.punkiversal.utils.Draw;
 import com.punkiversal.tweens.motion.CircularMotion;
 import com.punkiversal.Tween.TweenType;
 

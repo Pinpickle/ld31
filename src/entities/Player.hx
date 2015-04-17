@@ -3,10 +3,8 @@ package entities;
 import flash.display.Shape;
 import flash.geom.ColorTransform;
 import com.punkiversal.Entity;
-import com.punkiversal.graphics.Image;
 import com.punkiversal.PV;
 import com.punkiversal.utils.Input;
-import com.punkiversal.utils.Draw;
 import com.punkiversal.Sfx;
 
 class Player extends PhysicsEntity

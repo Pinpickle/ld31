@@ -2,7 +2,6 @@
 package entities;
 
 import com.punkiversal.Entity;
-import com.punkiversal.graphics.Text;
 import com.punkiversal.PV;
 import openfl.Assets;
 import flash.geom.ColorTransform;
