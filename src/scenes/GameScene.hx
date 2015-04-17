@@ -1,22 +1,22 @@
 package scenes;
 
-import com.haxepunk.Scene;
-import com.haxepunk.Entity;
-import com.haxepunk.masks.Masklist;
-import com.haxepunk.masks.Hitbox;
+import com.punkiversal.Scene;
+import com.punkiversal.Entity;
+import com.punkiversal.masks.Masklist;
+import com.punkiversal.masks.Hitbox;
 import entities.Player;
 import entities.Block;
-import com.haxepunk.HXP;
+import com.punkiversal.PV;
 import entities.Goal;
-import com.haxepunk.tweens.misc.VarTween;
-import com.haxepunk.Tween.TweenType;
-import com.haxepunk.utils.Ease;
+import com.punkiversal.tweens.misc.VarTween;
+import com.punkiversal.Tween.TweenType;
+import com.punkiversal.utils.Ease;
 import entities.HUD;
 import entities.IntroText;
-import com.haxepunk.utils.Data;
-import com.haxepunk.Sfx;
-import com.haxepunk.utils.Input;
-import com.haxepunk.utils.Key;
+import com.punkiversal.utils.Data;
+import com.punkiversal.Sfx;
+import com.punkiversal.utils.Input;
+import com.punkiversal.utils.Key;
 
 class GameScene extends Scene
 {
@@ -80,21 +80,21 @@ class GameScene extends Scene
 	public override function begin()
 	{
 		chooseColour();
-		HXP.screen.color = bgColour;
+		PV.screen.color = bgColour;
 		stateTween = new VarTween(tweenComplete, TweenType.Persist);
 		addTween(stateTween, false);
 
-		player = new entities.Player(HXP.width / 2, HXP.height / 2);
+		player = new entities.Player(PV.width / 2, PV.height / 2);
 		add(player);
 
 		walls = new Entity(0, 0);
 
-		//Looks like hitboxes are offset in HaxePunk so this is compensation
+		//Looks like hitboxes are offset in punkiversal so this is compensation
 		var wallMask:Masklist = new Masklist([
-			new Hitbox(WALL_WIDTH, HXP.height, cast(WALL_WIDTH / 2, Int)),
-			new Hitbox(HXP.width, WALL_WIDTH, 0, cast(WALL_WIDTH / 2, Int)),
-			new Hitbox(WALL_WIDTH, HXP.height, HXP.width - cast(WALL_WIDTH / 2, Int)),
-			new Hitbox(HXP.width, WALL_WIDTH, 0, HXP.height - cast(WALL_WIDTH / 2, Int))
+			new Hitbox(WALL_WIDTH, PV.height, cast(WALL_WIDTH / 2, Int)),
+			new Hitbox(PV.width, WALL_WIDTH, 0, cast(WALL_WIDTH / 2, Int)),
+			new Hitbox(WALL_WIDTH, PV.height, PV.width - cast(WALL_WIDTH / 2, Int)),
+			new Hitbox(PV.width, WALL_WIDTH, 0, PV.height - cast(WALL_WIDTH / 2, Int))
 		]);
 
 		walls = new Entity();
@@ -161,13 +161,13 @@ class GameScene extends Scene
 
 	public function init()
 	{
-		player.x = HXP.width / 2;
-		player.y = HXP.height / 2;
+		player.x = PV.width / 2;
+		player.y = PV.height / 2;
 		player.changeMode(Player.MODE_FREE_MOVEMENT);
 		player.xSpeed = 0;
 		player.ySpeed = 0;
 
-		goal.x = HXP.width / 2;
+		goal.x = PV.width / 2;
 		goal.y = 500;
 
 		chooseColour();
@@ -179,8 +179,8 @@ class GameScene extends Scene
 			for (n in 0...(blockRows)) 
 			{
 				var block:Block = blocks[ind];
-				block.x = HXP.width / 2 + (i - blockCols / 2 + 0.5) * blockSpacing;
-				block.y = HXP.height / 2 + (n - blockRows / 2 + 0.5) * blockSpacing;
+				block.x = PV.width / 2 + (i - blockCols / 2 + 0.5) * blockSpacing;
+				block.y = PV.height / 2 + (n - blockRows / 2 + 0.5) * blockSpacing;
 
 				ind ++;
 			}
@@ -211,7 +211,7 @@ class GameScene extends Scene
 	{
 		if (started)
 		{
-			timeLeft -= HXP.elapsed;
+			timeLeft -= PV.elapsed;
 		}
 
 		if (timeLeft <= 0)
@@ -221,7 +221,7 @@ class GameScene extends Scene
 
 		if (resetting) 
 		{
-			HXP.screen.color = HXP.colorLerp(oldBgColour, bgColour, transition);
+			PV.screen.color = PV.colorLerp(oldBgColour, bgColour, transition);
 		}
 		
 
@@ -247,7 +247,7 @@ class GameScene extends Scene
 
 	private function tweenComplete(e:Dynamic)
 	{
-		HXP.screen.color = bgColour;
+		PV.screen.color = bgColour;
 		resetting = false;
 	}
 
@@ -327,7 +327,7 @@ class GameScene extends Scene
 		
 		if (lives > 0)
 		{
-			HXP.screen.shake(3, 0.2);
+			PV.screen.shake(3, 0.2);
 			loseSound.play(0.7);
 			lives -= 1;
 			newMode();
@@ -335,7 +335,7 @@ class GameScene extends Scene
 		}
 		else
 		{
-			HXP.screen.shake(4, 0.5);
+			PV.screen.shake(4, 0.5);
 			finalSound.play(0.7);
 			var transitionEntities:Array<entities.TransitionEntity> = [];
 			getClass(entities.TransitionEntity, transitionEntities);

@@ -1,7 +1,7 @@
 
 package ;
 
-import com.haxepunk.HXP;
+import com.punkiversal.PV;
 
 class Utils 
 {
@@ -33,7 +33,7 @@ class Utils
 			}
 		}
 
-		return normaliseAngle(HXP.lerp(start, finish, dist));
+		return normaliseAngle(PV.lerp(start, finish, dist));
 	}
 
 	public static function normaliseAngle(angle:Dynamic):Dynamic

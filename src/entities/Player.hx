@@ -1,11 +1,13 @@
 package entities;
 
-import com.haxepunk.Entity;
-import com.haxepunk.graphics.Image;
-import com.haxepunk.HXP;
-import com.haxepunk.utils.Input;
-import com.haxepunk.utils.Draw;
-import com.haxepunk.Sfx;
+import flash.display.Shape;
+import flash.geom.ColorTransform;
+import com.punkiversal.Entity;
+import com.punkiversal.graphics.Image;
+import com.punkiversal.PV;
+import com.punkiversal.utils.Input;
+import com.punkiversal.utils.Draw;
+import com.punkiversal.Sfx;
 
 class Player extends PhysicsEntity
 {
@@ -38,6 +40,12 @@ class Player extends PhysicsEntity
 
 		jumpSfx = new Sfx("audio/jump.mp3");
 		jumpSfx.type = "sound";
+
+		graphic = new Shape();
+		cast(graphic, Shape).graphics.beginFill(colour, 1);
+		cast(graphic, Shape).graphics.drawRect(-PLAYER_SIZE / 2, -PLAYER_SIZE / 2, PLAYER_SIZE, PLAYER_SIZE);
+
+		graphic.transform.colorTransform = new ColorTransform();
 	}
 
 	override public function update()
@@ -76,31 +84,31 @@ class Player extends PhysicsEntity
 		colour = Main.gameScene.specialColour;
 	}
 
-	override public function render()
+	/*override public function render()
 	{
-		Draw.rectPlus(lerpX() - PLAYER_SIZE / 2, lerpY() - PLAYER_SIZE / 2, PLAYER_SIZE, PLAYER_SIZE, HXP.colorLerp(startColour, colour, Main.gameScene.transition), 1, false, 2);
-	}
+		// Draw.rectPlus(lerpX() - PLAYER_SIZE / 2, lerpY() - PLAYER_SIZE / 2, PLAYER_SIZE, PLAYER_SIZE, PV.colorLerp(startColour, colour, Main.gameScene.transition), 1, false, 2);
+	}*/
 
 	private function freeMovementControl()
 	{
 		if (Input.check("left"))
 		{
-			xSpeed -= 1000 * HXP.elapsed;
+			xSpeed -= 1000 * PV.elapsed;
 		}
 
 		if (Input.check("right"))
 		{
-			xSpeed += 1000 * HXP.elapsed;
+			xSpeed += 1000 * PV.elapsed;
 		}
 
 		if (Input.check("up"))
 		{
-			ySpeed -= 1000 * HXP.elapsed;
+			ySpeed -= 1000 * PV.elapsed;
 		}
 
 		if (Input.check("down"))
 		{
-			ySpeed += 1000 * HXP.elapsed;
+			ySpeed += 1000 * PV.elapsed;
 		}
 
 		xSpeed *= 0.97;
@@ -113,19 +121,19 @@ class Player extends PhysicsEntity
 		var factor:Float = onGround ? 1 : platformAirFactor;
 		if (Input.check("left"))
 		{
-			xSpeed -= platformAcc * HXP.elapsed * factor;
+			xSpeed -= platformAcc * PV.elapsed * factor;
 		}
 
 		if (Input.check("right"))
 		{
-			xSpeed += platformAcc * HXP.elapsed * factor;
+			xSpeed += platformAcc * PV.elapsed * factor;
 		}
 
 		if ((!(Input.check("left"))) && (!(Input.check("right"))))
 		{
-			if (Math.abs(xSpeed) > HXP.elapsed * platformDeacc * factor)
+			if (Math.abs(xSpeed) > PV.elapsed * platformDeacc * factor)
 			{
-				xSpeed -= Utils.sgn(xSpeed) * HXP.elapsed * platformDeacc * factor;
+				xSpeed -= Utils.sgn(xSpeed) * PV.elapsed * platformDeacc * factor;
 			}
 			else
 			{
@@ -139,7 +147,7 @@ class Player extends PhysicsEntity
 			jumpSfx.play(0.7);
 		}
 
-		ySpeed += 600 * HXP.elapsed;
+		ySpeed += 600 * PV.elapsed;
 
 		if (Math.abs(xSpeed) > platformMaxSpeed)
 		{

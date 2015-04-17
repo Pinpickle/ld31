@@ -1,10 +1,10 @@
 
 package entities;
 
-import com.haxepunk.Entity;
-import com.haxepunk.HXP;
-import com.haxepunk.graphics.Image;
-import com.haxepunk.utils.Draw;
+import com.punkiversal.Entity;
+import com.punkiversal.PV;
+import com.punkiversal.graphics.Image;
+import com.punkiversal.utils.Draw;
 
 class TransitionEntity extends Entity
 {
@@ -20,20 +20,24 @@ class TransitionEntity extends Entity
 
 	override public function update()
 	{
-		if ((updateImage) && (graphic != null))
+		/*if ((updateImage) && (graphic != null))
 		{
-			cast(graphic, Image).color = HXP.colorLerp(startColour, colour, Main.gameScene.transition);
+			cast(graphic, Image).color = PV.colorLerp(startColour, colour, Main.gameScene.transition);
 			cast(graphic, Image).angle = Utils.angleLerp(startRotation, rotation, Main.gameScene.transition);
-		}
+		}*/
 
 		super.update();
 	}
 
 	override public function render()
 	{
-		if ((graphic != null) && (graphic.visible))
-		{
-			Draw.graphic(graphic, cast(lerpX(), Int), cast(lerpY(), Int), 0);
+		if (graphic != null) {
+			graphic.x = cast(lerpX(), Int);
+			graphic.y = cast(lerpY(), Int);
+			
+			var col = graphic.transform.colorTransform;
+			col.color = PV.colorLerp(startColour, colour, Main.gameScene.transition);
+			graphic.transform.colorTransform = col;
 		}
 	}
 
@@ -52,12 +56,12 @@ class TransitionEntity extends Entity
 
 	public function lerpX():Float
 	{
-		return HXP.lerp(startX, x, Main.gameScene.transition);
+		return PV.lerp(startX, x, Main.gameScene.transition);
 	}
 
 	public function lerpY():Float
 	{
-		return HXP.lerp(startY, y, Main.gameScene.transition);
+		return PV.lerp(startY, y, Main.gameScene.transition);
 	}
 	
 

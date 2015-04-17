@@ -1,23 +1,25 @@
 
 package entities;
 
-import com.haxepunk.Entity;
-import com.haxepunk.graphics.Image;
-import com.haxepunk.masks.Polygon;
-import com.haxepunk.math.Vector;
-import com.haxepunk.HXP;
+import flash.display.Shape;
+import com.punkiversal.Entity;
+import com.punkiversal.graphics.Image;
+import com.punkiversal.masks.Polygon;
+import com.punkiversal.math.Vector;
+import com.punkiversal.PV;
 
 class Goal extends PhysicsEntity
 {
 
-	var sprite:Image;
+	var sprite:Shape;
 
 	public function new(x:Float, y:Float)
 	{
 		super(x, y);
 
-		graphic = sprite = Image.createRect(14, 14, 0xFFFFFF);
-		sprite.centerOrigin();
+		graphic = sprite = new Shape();
+		sprite.graphics.lineStyle(2, Main.gameScene.specialColour);
+		sprite.graphics.drawRect(-7, -7, 14, 14);
 
 		setHitbox(14, 14, 7, 7);
 		type = "goal";
@@ -27,7 +29,7 @@ class Goal extends PhysicsEntity
 
 	override public function update()
 	{
-		sprite.color = HXP.colorLerp(startColour, colour, Main.gameScene.transition);
+		//sprite.color = PV.colorLerp(startColour, colour, Main.gameScene.transition);
 	}
 
 	override public function setupTransition()

@@ -3,7 +3,7 @@ package scenes;
 
 import entities.Block;
 import scenes.GameScene;
-import com.haxepunk.HXP;
+import com.punkiversal.PV;
 import entities.Player;
 import entities.Goal;
 
@@ -21,12 +21,12 @@ class PlatformsState extends GameState
 
 	override public function init()
 	{
-		platforms = cast(Math.floor(HXP.lerp(1, 9, Main.gameScene.availableBlocks / Main.gameScene.blocks.length) * Math.random()) + 1, Int);
+		platforms = cast(Math.floor(PV.lerp(1, 9, Main.gameScene.availableBlocks / Main.gameScene.blocks.length) * Math.random()) + 1, Int);
 
 		var blocks = Main.gameScene.assignBlocks(platforms, Block.MODE_WALL);
 
-		topX = HXP.width / 2 + Utils.gaussianRandom() * 200;
-		topY = HXP.height - GameScene.WALL_WIDTH - 10;
+		topX = PV.width / 2 + Utils.gaussianRandom() * 200;
+		topY = PV.height - GameScene.WALL_WIDTH - 10;
 
 		for (block in blocks)
 		{
@@ -47,7 +47,7 @@ class PlatformsState extends GameState
 
 	private function newTops()
 	{
-		topX = topX + ((topX < GameScene.WALL_WIDTH + SIDE_CHANGE) ? 1 : ((topX > HXP.width - GameScene.WALL_WIDTH - SIDE_CHANGE) ? -1 : (Math.random() < 0.5 ? 1 : -1))) * (SIDE_CHANGE + Utils.gaussianRandom() * SIDE_VAR);
+		topX = topX + ((topX < GameScene.WALL_WIDTH + SIDE_CHANGE) ? 1 : ((topX > PV.width - GameScene.WALL_WIDTH - SIDE_CHANGE) ? -1 : (Math.random() < 0.5 ? 1 : -1))) * (SIDE_CHANGE + Utils.gaussianRandom() * SIDE_VAR);
 		topY = topY - (HEIGHT_CHANGE + Utils.gaussianRandom() * HEIGHT_VAR);
 	}
 

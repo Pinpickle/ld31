@@ -1,10 +1,10 @@
-import com.haxepunk.Engine;
-import com.haxepunk.HXP;
-import com.haxepunk.utils.Input;
-import com.haxepunk.utils.Key;
+import com.punkiversal.Engine;
+import com.punkiversal.PV;
+import com.punkiversal.utils.Input;
+import com.punkiversal.utils.Key;
 import flash.display.StageQuality;
 import scenes.GameScene;
-import com.haxepunk.utils.Data;
+import com.punkiversal.utils.Data;
 
 class Main extends Engine
 {
@@ -13,23 +13,24 @@ class Main extends Engine
 
 	override public function init()
 	{
+		trace('????');
 
-		HXP.stage.quality = StageQuality.BEST;
-		HXP.screen.smoothing = false;
+		PV.stage.quality = StageQuality.BEST;
+		PV.screen.smoothing = false;
 #if debug
-		HXP.console.enable();
-		HXP.console.debug = true;
-		HXP.console.debugDraw = true;
+		PV.console.enable();
+		PV.console.debug = true;
+		PV.console.debugDraw = true;
 #end
 		
-		HXP.defaultFont = "font/emulogic.ttf";
+		PV.defaultFont = "font/emulogic.ttf";
 
 		Input.define("left", [Key.LEFT, Key.A]);
 		Input.define("right", [Key.RIGHT, Key.D]);
 		Input.define("up", [Key.UP, Key.W, Key.SPACE]);
 		Input.define("down", [Key.DOWN, Key.S]);
 
-		HXP.scene = gameScene = new scenes.GameScene();
+		PV.scene = gameScene = new scenes.GameScene();
 
 		Data.load("save");
 	}

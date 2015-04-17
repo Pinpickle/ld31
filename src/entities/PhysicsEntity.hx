@@ -2,10 +2,10 @@
 
 package entities;
 
-import com.haxepunk.HXP;
-import com.haxepunk.Entity;
-import com.haxepunk.utils.Draw;
-import com.haxepunk.graphics.Image;
+import com.punkiversal.PV;
+import com.punkiversal.Entity;
+import com.punkiversal.utils.Draw;
+import com.punkiversal.graphics.Image;
 
 class PhysicsEntity extends TransitionEntity
 {
@@ -18,8 +18,8 @@ class PhysicsEntity extends TransitionEntity
 
 	override public function update() 
 	{
-		var xAdd:Float = xSpeed * HXP.elapsed;
-		var yAdd:Float = ySpeed * HXP.elapsed;
+		var xAdd:Float = xSpeed * PV.elapsed;
+		var yAdd:Float = ySpeed * PV.elapsed;
 
 		if ((stopAtSolid) && (collide("solid", x + xAdd, y + yAdd) != null))
 		{

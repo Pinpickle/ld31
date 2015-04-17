@@ -3,7 +3,7 @@ package scenes;
 
 import entities.Block;
 import scenes.GameScene;
-import com.haxepunk.HXP;
+import com.punkiversal.PV;
 import entities.Player;
 import entities.Goal;
 
@@ -16,9 +16,9 @@ class LaserState extends GameState
 
 	override public function init()
 	{
-		var gapWidth:Int = cast HXP.lerp(10, 3, Main.gameScene.availableBlocks / Main.gameScene.blocks.length);
+		var gapWidth:Int = cast PV.lerp(10, 3, Main.gameScene.availableBlocks / Main.gameScene.blocks.length);
 
-		var colBlocks:Int = cast (((HXP.height - GameScene.WALL_WIDTH * 2) / SPACING - gapWidth) / 4);
+		var colBlocks:Int = cast (((PV.height - GameScene.WALL_WIDTH * 2) / SPACING - gapWidth) / 4);
 
 		cols = cast Math.ceil(Math.random() * (Main.gameScene.availableBlocks / colBlocks));
 		var blocks:Array<Block> = Main.gameScene.assignBlocks(cols * 4, Block.MODE_IDLE);
@@ -30,7 +30,7 @@ class LaserState extends GameState
 
 		var col:Int = 0;
 		var ind:Int = 0;
-		var blockY:Float = HXP.height - GameScene.WALL_WIDTH - SPACING / 2;
+		var blockY:Float = PV.height - GameScene.WALL_WIDTH - SPACING / 2;
 		var done:Bool = false;
 		for(bigBlock in blocks)
 		{
@@ -66,7 +66,7 @@ class LaserState extends GameState
 					}
 					else
 					{
-						blockY = HXP.height - GameScene.WALL_WIDTH - SPACING / 2;
+						blockY = PV.height - GameScene.WALL_WIDTH - SPACING / 2;
 						ind = 0;
 					}
 				}

@@ -1,13 +1,13 @@
 
 package entities;
 
-import com.haxepunk.Entity;
-import com.haxepunk.graphics.Image;
-import com.haxepunk.HXP;
+import flash.display.Shape;
+import com.punkiversal.Entity;
+import com.punkiversal.PV;
 import scenes.GameScene;
-import com.haxepunk.utils.Draw;
-import com.haxepunk.tweens.motion.CircularMotion;
-import com.haxepunk.Tween.TweenType;
+import com.punkiversal.utils.Draw;
+import com.punkiversal.tweens.motion.CircularMotion;
+import com.punkiversal.Tween.TweenType;
 
 class Block extends entities.PhysicsEntity
 {
@@ -28,7 +28,7 @@ class Block extends entities.PhysicsEntity
 
 	private var circleTween:CircularMotion = new CircularMotion(null, TweenType.Looping);
 
-	private var sprite:Image;
+	private var sprite:Shape;
 
 	//Laser mode
 	public var delay:Float = 0;
@@ -40,16 +40,19 @@ class Block extends entities.PhysicsEntity
 		super(x, y);
 		this.size = size;
 
-		var circleX = Math.random() * HXP.width;
-		var circleY = Math.random() * HXP.height;
-		var circleRadius = Math.random() * (Math.min(Math.min(circleX, HXP.width - circleX), Math.min(circleY, HXP.width - circleY)) - 5) + 5;
+		var circleX = Math.random() * PV.width;
+		var circleY = Math.random() * PV.height;
+		var circleRadius = Math.random() * (Math.min(Math.min(circleX, PV.width - circleX), Math.min(circleY, PV.width - circleY)) - 5) + 5;
 
 		circleTween.setMotionSpeed(circleX, circleY, circleRadius, Math.random() * 360, Math.random() < 0.5, Math.random() * 20 + 5);
 		addTween(circleTween, true);
 
-		sprite = Image.createRect(cast(20 / size, Int), cast(20 / size, Int), 0xFFFFFF);
-		sprite.centerOrigin();
+		var side = cast(20 / size, Int);
 
+
+		sprite = new Shape();
+		sprite.graphics.beginFill(0x000000);
+		sprite.graphics.drawRect(-side / 2, -side / 2, side, side);
 		graphic = sprite;
 
 		setHitbox(cast(20 / size, Int), cast(20 / size, Int), cast(10 / size, Int), cast(10 / size, Int));
@@ -92,11 +95,11 @@ class Block extends entities.PhysicsEntity
 			{
 				for (block in splitBlocks)
 				{
-					block.visible = false;
+					block.graphic.visible = false;
 					block.splitState = -1;
 					Main.gameScene.remove(block);
 				}
-				visible = true;
+				graphic.visible = true;
 				splitState = 0;
 			}
 		}
@@ -109,20 +112,25 @@ class Block extends entities.PhysicsEntity
 					x = circleTween.x;
 					y = circleTween.y;
 				case MODE_SPIKE:
-					rotation += 90 * HXP.elapsed;
+					rotation += 90 * PV.elapsed;
 				case MODE_LASER:
-					rotation += 90 * HXP.elapsed;
+					rotation += 90 * PV.elapsed;
 					if (delay > 0)
 					{
-						delay -= HXP.elapsed;
+						delay -= PV.elapsed;
 					}
-					else if (x < HXP.width - GameScene.WALL_WIDTH - 20 - 20 * laserInd)
+					else if (x < PV.width - GameScene.WALL_WIDTH - 20 - 20 * laserInd)
 					{
 						x += speed;
 					}
 					
 			}
 		}
+	}
+
+	override public function render() {
+		super.render();
+		graphic.rotation = rotation;
 	}
 
 	public function setMode(m:Int)
@@ -135,11 +143,11 @@ class Block extends entities.PhysicsEntity
 				type = "";
 				layer = 10;
 				rotation = 0;
-				colour = HXP.colorLerp(Main.gameScene.bgColour, Main.gameScene.specialColour, 0.2);
+				colour = PV.colorLerp(Main.gameScene.bgColour, Main.gameScene.specialColour, 0.2);
 			case MODE_IDLE:
 				type = "";
 				layer = 1;
-				colour = HXP.colorLerp(Main.gameScene.bgColour, Main.gameScene.specialColour, 0.4);
+				colour = PV.colorLerp(Main.gameScene.bgColour, Main.gameScene.specialColour, 0.4);
 			case MODE_WALL:
 				graphic.visible = true;
 				colour = Main.gameScene.wallColour;
@@ -164,12 +172,12 @@ class Block extends entities.PhysicsEntity
 	public function split(?mode:Int):Array<Block>
 	{
 		type = "";
-		visible = false;
+		graphic.visible = false;
 		var ind:Int = 0;
 
 		for (block in splitBlocks)
 		{
-			block.visible = true;
+			block.graphic.visible = true;
 			if (block.splitState == -1)
 			{	
 				subBlockPosition(block, ind, true);
@@ -217,7 +225,7 @@ class Block extends entities.PhysicsEntity
 	{
 		var xVec:Float = (((ind == 1) || (ind == 2)) ? 1 : -1) * width / 4;
 		var yVec:Float = ((ind > 1) ? 1 : -1) * width / 4;
-		var ang:Float = rotation * HXP.RAD,
+		var ang:Float = rotation * PV.RAD,
 			cos:Float = Math.cos(ang),
 			sin:Float = Math.sin(ang);
 
@@ -235,8 +243,8 @@ class Block extends entities.PhysicsEntity
 	{
 		do
 		{
-			x = Math.random() * (HXP.width - GameScene.WALL_WIDTH * 2 - 20) + GameScene.WALL_WIDTH + 10;
-			y = Math.random() * (HXP.height - GameScene.WALL_WIDTH * 2 - 20) + GameScene.WALL_WIDTH + 10;
+			x = Math.random() * (PV.width - GameScene.WALL_WIDTH * 2 - 20) + GameScene.WALL_WIDTH + 10;
+			y = Math.random() * (PV.height - GameScene.WALL_WIDTH * 2 - 20) + GameScene.WALL_WIDTH + 10;
 		}
 		while ((collide("player", x, y) != null) || (collide("goal", x, y) != null));
 	}

@@ -3,7 +3,7 @@ package scenes;
 
 import entities.Block;
 import scenes.GameScene;
-import com.haxepunk.HXP;
+import com.punkiversal.PV;
 
 class SpikeFieldState extends GameState
 {
@@ -31,6 +31,6 @@ class SpikeFieldState extends GameState
 
 	override public function time(scene:GameScene)
 	{
-		return 2 + HXP.distance(scene.player.x, scene.player.y, scene.goal.x, scene.goal.y) / 80;
+		return 2 + PV.distance(scene.player.x, scene.player.y, scene.goal.x, scene.goal.y) / 80;
 	}
 }
