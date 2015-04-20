@@ -13,7 +13,6 @@ import scenes.GameScene;
 import com.punkiversal.Tween.TweenType;
 import com.punkiversal.PV;
 import com.punkiversal.utils.Ease;
-import com.punkiversal.graphics.Text;
 import flash.text.TextFormatAlign;
 
 class HUD extends TransitionEntity

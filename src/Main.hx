@@ -35,6 +35,6 @@ class Main extends Engine
 		Data.load("save");
 	}
 
-	public static function main() { new Main(); }
+	public static function main() { new Main(600, 600); }
 
 }

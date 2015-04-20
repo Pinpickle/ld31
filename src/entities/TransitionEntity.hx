@@ -3,8 +3,6 @@ package entities;
 
 import com.punkiversal.Entity;
 import com.punkiversal.PV;
-import com.punkiversal.graphics.Image;
-import com.punkiversal.utils.Draw;
 
 class TransitionEntity extends Entity
 {
@@ -32,8 +30,8 @@ class TransitionEntity extends Entity
 	override public function render()
 	{
 		if (graphic != null) {
-			graphic.x = cast(lerpX(), Int);
-			graphic.y = cast(lerpY(), Int);
+			graphic.x = Std.int(lerpX());
+			graphic.y = Std.int(lerpY());
 			
 			var col = graphic.transform.colorTransform;
 			col.color = PV.colorLerp(startColour, colour, Main.gameScene.transition);

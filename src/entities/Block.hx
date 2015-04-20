@@ -46,7 +46,7 @@ class Block extends entities.PhysicsEntity
 		circleTween.setMotionSpeed(circleX, circleY, circleRadius, Math.random() * 360, Math.random() < 0.5, Math.random() * 20 + 5);
 		addTween(circleTween, true);
 
-		var side = cast(20 / size, Int);
+		var side = Std.int(20 / size);
 
 
 		sprite = new Shape();
@@ -54,7 +54,7 @@ class Block extends entities.PhysicsEntity
 		sprite.graphics.drawRect(-side / 2, -side / 2, side, side);
 		graphic = sprite;
 
-		setHitbox(cast(20 / size, Int), cast(20 / size, Int), cast(10 / size, Int), cast(10 / size, Int));
+		setHitbox(Std.int(20 / size), Std.int(20 / size), Std.int(10 / size), Std.int(10 / size));
 
 		if (size == 1)
 		{

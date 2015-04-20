@@ -29,7 +29,7 @@ class Player extends PhysicsEntity
 
 		stopAtSolid = true;
 
-		setHitbox(PLAYER_SIZE, PLAYER_SIZE, cast(PLAYER_SIZE / 2, Int), cast(PLAYER_SIZE / 2, Int));
+		setHitbox(PLAYER_SIZE, PLAYER_SIZE, Std.int(PLAYER_SIZE / 2), Std.int(PLAYER_SIZE / 2));
 
 		type = "player";
 

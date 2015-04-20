@@ -91,10 +91,10 @@ class GameScene extends Scene
 
 		//Looks like hitboxes are offset in punkiversal so this is compensation
 		var wallMask:Masklist = new Masklist([
-			new Hitbox(WALL_WIDTH, PV.height, cast(WALL_WIDTH / 2, Int)),
-			new Hitbox(PV.width, WALL_WIDTH, 0, cast(WALL_WIDTH / 2, Int)),
-			new Hitbox(WALL_WIDTH, PV.height, PV.width - cast(WALL_WIDTH / 2, Int)),
-			new Hitbox(PV.width, WALL_WIDTH, 0, PV.height - cast(WALL_WIDTH / 2, Int))
+			new Hitbox(WALL_WIDTH, PV.height, Std.int(WALL_WIDTH / 2)),
+			new Hitbox(PV.width, WALL_WIDTH, 0, Std.int(WALL_WIDTH / 2)),
+			new Hitbox(WALL_WIDTH, PV.height, PV.width - Std.int(WALL_WIDTH / 2)),
+			new Hitbox(PV.width, WALL_WIDTH, 0, PV.height - Std.int(WALL_WIDTH / 2))
 		]);
 
 		walls = new Entity();
