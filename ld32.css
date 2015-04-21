@@ -15,6 +15,11 @@ p {
 	display: block;
 }
 
+.game embed {
+    height: 100%;
+    width: 100%;
+}
+
 .game-container {
     position: absolute;
     width: 100%;
