@@ -28,6 +28,10 @@
 
         <script>
             $(document).ready(function() {
+                if (window.location.hash === "#nooverlay") {
+                    $('.overlay').remove();
+                }
+
                 var resize = function() {
                     var height = $(window).height();
                     var width = $(window).width();
